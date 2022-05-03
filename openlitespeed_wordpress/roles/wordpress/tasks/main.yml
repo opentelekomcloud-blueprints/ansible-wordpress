@@ -10,19 +10,19 @@
   changed_when: false
   tags: [ system ]
 
-- name: Set download url
+- name: Set download url to user-specified version
   set_fact:
     download_url: "https://wordpress.org/wordpress-{{ wordpress_version }}.tar.gz"
   when:
     - wordpress_version is defined and wordpress_version != ''
 
-- name: Set download url
+- name: Set download url to latest
   set_fact:
     download_url: "https://wordpress.org/latest.tar.gz"
   when:
     - wordpress_version is defined and wordpress_version == ''
 
-- name: Download and unpack latest WordPress
+- name: Download and unpack WordPress
   unarchive:
     src: "{{ download_url }}"
     dest: "{{ doc_root }}"
