@@ -10,9 +10,21 @@
   changed_when: false
   tags: [ system ]
 
+- name: Set download url
+  set_fact:
+    download_url: "https://wordpress.org/wordpress-{{ wordpress_version }}.tar.gz"
+  when:
+    - wordpress_version is defined and wordpress_version != ''
+
+- name: Set download url
+  set_fact:
+    download_url: "https://wordpress.org/latest.tar.gz"
+  when:
+    - wordpress_version is defined and wordpress_version == ''
+
 - name: Download and unpack latest WordPress
   unarchive:
-    src: https://wordpress.org/latest.tar.gz
+    src: "{{ download_url }}"
     dest: "{{ doc_root }}"
     remote_src: yes
     mode: '0750'

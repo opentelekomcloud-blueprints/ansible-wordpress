@@ -31,3 +31,7 @@ https_port: "443"
 doc_root: "/var/www/{{ http_host }}"
 ssl_key: "/usr/local/lsws/admin/conf/webadmin.key"
 ssl_crt: "/usr/local/lsws/admin/conf/webadmin.crt"
+
+#Wordpress Settings
+# Set wordpress version. If not specified, latest will be used.
+wordpress_version: "5.9.3"
